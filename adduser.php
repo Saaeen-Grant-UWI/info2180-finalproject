@@ -13,6 +13,10 @@ $title = "Add User"
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <h1>New User</h1>
+        <div class="content-container">
+            
+        </div>
         <?php require "includes/footer.php"; ?>
     </div>
 

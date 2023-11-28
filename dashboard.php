@@ -13,6 +13,13 @@ $title = "Dashboard"
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <div class="page-title">
+            <h1>Dashboard</h1>
+            <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
+        </div>
+        <div class="content-container">
+            
+        </div>
         <?php require "includes/footer.php"; ?>
     </div>
     

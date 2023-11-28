@@ -13,6 +13,7 @@ $title = "Add Contact"
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <h1>New Contact</h1>
         <?php require "includes/footer.php"; ?>
     </div>
 

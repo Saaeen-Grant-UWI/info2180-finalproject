@@ -13,6 +13,9 @@ $title = "Users"
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <div class="content-container">
+            
+        </div>
         <?php require "includes/footer.php"; ?>
     </div>
 
