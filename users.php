@@ -39,7 +39,9 @@ $title = "Users"
                 </tr>
             </table>
         </div>
+
         <?php require "includes/footer.php"; ?>
+        
     </div>
     
 

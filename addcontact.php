@@ -68,6 +68,10 @@ $title = "Add Contact"
                     </select>
                 </div>
 
+                <div class="input-container">
+                    <button type="submit">Save</button>
+                </div>
+
             </form>
         </div>
         <?php require "includes/footer.php"; ?>

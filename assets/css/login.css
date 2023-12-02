@@ -24,7 +24,6 @@ form input, form button {
     outline: none;
     border-radius: 5px;
     font-size: 16px;
-    
 }
 
 form input { border: 1px solid #919191; }
@@ -58,6 +57,4 @@ form button:hover {
     background-color: #00718e; 
 }
 
-form button:hover div {
-    background-image: url(../images/lock-dark.svg);
-}
+form button:hover div { background-image: url(../images/lock-dark.svg); }

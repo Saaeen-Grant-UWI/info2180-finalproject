@@ -14,6 +14,7 @@ $title = "Add User"
 
     <div class="container">
         <h1>New User</h1>
+        
         <div class="content-container">
             <form action="" id="add-user-form" method="post">
 
@@ -44,10 +45,16 @@ $title = "Add User"
                         <option name="admin">Admin</option>
                     </select>
                 </div>
+
+                <div class="input-container">
+                    <button type="submit">Save</button>
+                </div>
                 
             </form>
         </div>
+
         <?php require "includes/footer.php"; ?>
+
     </div>
 
 </body>

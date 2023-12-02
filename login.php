@@ -20,7 +20,9 @@ $title = "Login"
             <div class="form-input"><input type="password" name="password" placeholder="Enter password here"></div>
             <button type="button"><div></div>Login</button>
         </form>
+
         <?php require "includes/footer.php"; ?>
+        
     </div>
     
 </body>

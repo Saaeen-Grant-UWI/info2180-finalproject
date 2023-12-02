@@ -62,6 +62,7 @@ $title = "Dashboard"
         </div>
 
         <?php require "includes/footer.php"; ?>
+        
     </div>
     
 </body>
