@@ -18,7 +18,7 @@ $title = "Login"
         <form action="" method="post">
             <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>
             <div class="form-input"><input type="password" name="password" placeholder="Enter password here"></div>
-            <button type="button"><img src="assets/images/lock.svg" width="32px" alt=""><span>Login</span></button>
+            <button type="button"><div></div>Login</button>
         </form>
         <?php require "includes/footer.php"; ?>
     </div>

@@ -30,23 +30,34 @@ form input, form button {
 form input { border: 1px solid #919191; }
 
 form button {
-    border: 1px solid #36B9DA;
-    background-color: #36B9DA;
+    border: 1px solid #0093b8;
+    background-color: #0093b8;
     color: white;
     box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.1);
-    transition: 0.3s;
     position: relative;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
 }
 
-form button img {
-    position: absolute;
-    right: 93%;
-    top: 50%;
-    transform: translate(0, -50%);
+form button div {
+   height: 32px;
+   width: 32px;
+   background-image: url(../images/lock.svg);
+   background-repeat: no-repeat;
+   background-size: contain;
+   left: 8px;
+   position: absolute;
+   transition: 0.3s;
 }
 
 form button:hover {
-    border: 1px solid #0093b8;
-    background-color: #0093b8; 
+    border: 1px solid #00718e;
+    background-color: #00718e; 
+}
+
+form button:hover div {
+    background-image: url(../images/lock-dark.svg);
 }
