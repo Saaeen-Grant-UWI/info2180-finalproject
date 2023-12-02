@@ -35,7 +35,7 @@ a {
 aside {
     min-height: 100vh;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-    padding: 18px;
+    padding-top: 18px;
     z-index: 1;
 }
 
@@ -46,29 +46,31 @@ aside ul {
 }
 
 aside ul li {
-    padding: 12px 0;
     display: flex;
-    align-items: center;
-    justify-content: baseline;
-    gap: 8px;
-    transition: 0.3s;
 }
 
-aside ul li:not(:last-child):hover {
-   padding-left: 24px;
-   margin: 0 -18px;
-   background-color: #efefef;
-}
-
-aside ul li:last-child:hover{
-    padding-left: 4px;
-    margin: 0 -18px;
-    background-color: #f6cbcb;
- }
 
 aside ul li a {
     color: black;
     font-weight: bold;
+    width: 100%;
+    padding: 16px 0;
+    padding-left: 18px;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    gap: 8px;
+    transition: .3s;
+}
+
+aside ul li:not(:last-child) a:hover {
+    background-color: #F3F4F6;
+    padding-left: 32px;
+}
+
+aside ul li:last-child a:hover {
+    background-color: #ffe2e2;
+    padding-left: 0px;
 }
 
 footer {
@@ -115,3 +117,51 @@ footer {
 .container footer {
     margin-top: 24px;
 }
+
+table {
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    border-collapse:collapse;   
+}
+
+tr { border: 1px solid #d8dadd; }
+th, td { padding: 12px; }
+th { background-color: #F3F4F6; }
+
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+input {
+    padding: 12px 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #656668;
+
+}
+
+select{
+    padding: 8px;
+    background-color: white;
+}
+
+option {
+    background-color: white;
+}
+
+input, select {
+    border: none;
+    outline: none;
+    border: 1px solid #d8dadd; 
+}
+

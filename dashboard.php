@@ -18,7 +18,15 @@ $title = "Dashboard"
             <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
         </div>
         <div class="content-container">
-            
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Company</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </table>
         </div>
         <?php require "includes/footer.php"; ?>
     </div>
