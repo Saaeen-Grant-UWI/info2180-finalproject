@@ -1,7 +1,11 @@
 <?php 
 
 require "core/init.php"; 
-$title = "Dashboard"
+$title = "Dashboard";
+
+echo "<pre>";
+var_dump($_SESSION["message"]);
+echo "</pre>";
 
 ?>
 

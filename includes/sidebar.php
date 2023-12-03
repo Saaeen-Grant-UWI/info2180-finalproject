@@ -23,7 +23,7 @@
         </li>
 
         <li>
-            <a href="login.php">
+            <a href="core\logout.php">
                 <img src="assets/images/logout.svg" width="32px" alt="" srcset=""> <!-- https://www.svgrepo.com/collection/xnix-circular-interface-icons/4 -->
                 Logout
             </a>
