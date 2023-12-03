@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php require "includes/banner.php"; ?>
 
     <div class="login">
-        <?php echo(message()); ?>
+        <?php echo(message());?>
         <h1>Login</h1>
         <form action="" method="post">
             <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>

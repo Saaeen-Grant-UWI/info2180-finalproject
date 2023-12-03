@@ -19,5 +19,11 @@ function message($message = '') {
     return false;
  }
 
+function is_loggedin() {
+    if (!(empty($_SESSION['user_data']))){
+        return true;
+    }
+    return false;
+}
 
 ?>
