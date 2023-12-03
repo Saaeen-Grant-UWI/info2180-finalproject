@@ -2,37 +2,33 @@
 
 require "core/init.php"; 
 $title = "Login";
-
-echo "<pre>";
-var_dump($_POST);
-echo "</pre>";
-
-
+$erros = [];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $result = get_where("users",["email",$_POST["email"]]);
-    $user = empty($result)? []: $result[0];
-    if($user) { 
-        $password = $user["password"];
-        if($password == $_POST["password"]) {
-            echo("logged in!!");
-            $_SESSION["user_data"] = $user;
-            $_SESSION["message"] = "Login was successful!";
-            header("Location: http://localhost/info2180-finalproject/dashboard.php");
+    
+    if(!empty($_POST["email"])) {
 
-            
+        $result = get_where("users",["email",$_POST["email"]]);
+        $user = empty($result)? []: $result[0];
+    
+        if($user) { 
+            $password = $user["password"];
+            if($password == $_POST["password"]) {
+                $_SESSION["user_data"] = $user;
+                message("Login was successful!");
+                redirect("dashboard.php");
+                
+            } else {
+                $erros['password'] = "password wrong asl!!";
+            }
         } else {
-            echo("password wrong asl!!");
+            $erros['email'] = "email not found!!";
         }
     } else {
-        echo("email not found!!");
+        $erros['email'] = "enter email";
     }
     
 }
-
-
-
-
 
 ?>
 
@@ -44,11 +40,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php require "includes/banner.php"; ?>
 
     <div class="login">
+        <?php echo(message()); ?>
         <h1>Login</h1>
-        <a href="dashboard.php">see dashboard (temporary)</a>
         <form action="" method="post">
             <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>
+            <?php echo(!array_key_exists("email",$erros)? "": $erros['email'] ); ?>
             <div class="form-input"><input type="password" name="password" placeholder="Enter password here"></div>
+            <?php echo(!array_key_exists("password",$erros)? "": $erros['password'] ); ?>
             <button type="submit"><div></div>Login</button>
         </form>
 

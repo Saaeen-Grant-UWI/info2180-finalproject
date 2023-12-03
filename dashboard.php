@@ -3,10 +3,6 @@
 require "core/init.php"; 
 $title = "Dashboard";
 
-echo "<pre>";
-var_dump($_SESSION["message"]);
-echo "</pre>";
-
 ?>
 
 <?php require "includes/header.php"; ?>
@@ -17,6 +13,9 @@ echo "</pre>";
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <?php
+           echo(message());
+        ?>
         <div class="page-title">
             <h1>Dashboard</h1>
             <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
