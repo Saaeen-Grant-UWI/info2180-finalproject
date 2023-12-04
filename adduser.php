@@ -2,31 +2,30 @@
 
 require "core/init.php"; 
 $title = "Add User";
+$erros = [];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(!empty($_POST)) {
 
-        $result = get_where("users",["email",$_POST["email"]]);
-        $user = empty($result)? []: $result[0];
-    
-        if($user) { 
-            $password = $user["password"];
-            if($password == $_POST["password"]) {
-                $_SESSION["user_data"] = $user;
-                message("Login was successful!");
-                redirect("dashboard.php");
-                
-            } else {
-                $erros['password'] = "password wrong asl!!";
+        foreach (["first_name", "last_name","password", "email", "role", "created_at"] as $key=> $value) {
+            if ($value != "created_at") {
+                if(empty($_POST[$value])) {
+                    $erros[$value] = $value." is required!";
+                }
             }
-        } else {
-            $erros['email'] = "email not found!!";
         }
-    } else {
-        $erros['email'] = "enter email";
+
+        if(empty($erros)) {
+            insert("users", [str_replace('_', '', $_POST["first_name"]), str_replace('_', '', $_POST["last_name"]), $_POST["password"], $_POST["email"], $_POST["role"]]);
+        }
+        
+        
     }
-    
+
+        
 }
+
+
 
 ?>
 
@@ -64,8 +63,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="input-container">
-                    <label for="roles">Roles</label>
-                    <select name="roles" id="role-select">
+                    <label for="role">Roles</label>
+                    <select name="role" id="role-select">
                         <option name="member">Member</option>
                         <option name="admin">Admin</option>
                     </select>

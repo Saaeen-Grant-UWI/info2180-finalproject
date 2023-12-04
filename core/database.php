@@ -20,20 +20,24 @@
     }
 
     function insert($table, $data){
-        switch($table){
-            case "user":
-                $statement = connect()->prepare("insert into ".$table." (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `created_at`) values (NULL, ?,?,?,?,?)");
-                break;
+        $statement = connect()->prepare("INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `created_at`) VALUES (NULL, ?, ?, ?, ?, ?, '2023-12-03 04:16:54.000000')");
+        // switch($table){
+        //     case "users":
+        //         $statement = connect()->prepare("insert into ".$table." (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `created_at`) values (NULL, ?, ?, ?, ?, ?, 2023-12-03 04:16:54)");
+        //         break;
                 
-            case "contact":
-                $statement = connect()->prepare("insert into ".$table." (`id`, `title`, `firstname`, `lastname`, `email`, `telephone`, `company`, `type`, `assigned_to`, `created_by`, `created_at`, `updated_at`) values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                break;
+        //     case "contacts":
+        //         $statement = connect()->prepare("insert into ".$table." (`id`, `title`, `firstname`, `lastname`, `email`, `telephone`, `company`, `type`, `assigned_to`, `created_by`, `created_at`, `updated_at`) values (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        //         break;
 
-            case "notes":
-                $statement = connect()->prepare("insert into ".$table." (`id`, `contact_id`, `comment`, `created_by`, `created_at`) values (NULL, ?, ?, ?, ?)");
-                break;
+        //     case "notes":
+        //         $statement = connect()->prepare("insert into ".$table." (`id`, `contact_id`, `comment`, `created_by`, `created_at`) values (NULL, ?, ?, ?, ?)");
+        //         break;
+        // }
+        if(!is_array($statement )) {
+            $statement->execute($data);
         }
-        $statement->execute([$data]);
+        
     }
 
 ?>
