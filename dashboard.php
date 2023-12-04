@@ -8,14 +8,12 @@ $title = "Dashboard";
 <?php require "includes/header.php"; ?>
 </head>
 <body>
-
+<?php if (is_loggedin()) { ?>
     <?php require "includes/banner.php"; ?>
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
-        <?php
-           echo(message());
-        ?>
+        <?php require "includes/message.php"; ?>
         <div class="page-title">
             <h1>Dashboard</h1>
             <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
@@ -46,17 +44,19 @@ $title = "Dashboard";
                     <th>Type</th>
                     <th></th>
                 </tr>
-                <?php if (is_loggedin()) {?>
-                    <?php if (empty(get_all("contacts"))) { ?>
+                <?php if (empty(get_all("contacts"))) { ?>
+                    <tr>
+                        <td colspan="100%" style="text-align: center;">
+                            <p class="table-warning" >No contacts found</p>
+                        </td>
+                    </tr>
+                <?php } else { ?>
+                    <?php foreach (get_all("contacts") as $row){?>
                         <tr>
-                            <td colspan="100%" style="text-align: center;">No contacts found</td>
-                        </tr>
-                    <?php } else { ?>
-                        <tr>
-                            <td>Mr.Dwight Shrute</td>
-                            <td>dwight.shrute@paper.co</td>
-                            <td>The Paper Company</td>
-                            <td><span class="support" >support</span></td>
+                            <td><?= $row['firstname']." ".$row['lastname'] ?></td>
+                            <td><?= $row['email']?></td>
+                            <td><?= $row['company']?></td>
+                            <td><span class="<?=str_replace(" ","-",$row['type'])?>"><?= $row['type']?></span></td>
                             <td><a href="#">view</a></td>
                         </tr>
                     <?php }?>
@@ -64,10 +64,13 @@ $title = "Dashboard";
             </table>
 
         </div>
-
         <?php require "includes/footer.php"; ?>
-        
+
     </div>
-    
+
+<?php } else { ?> 
+    <?php require "includes/warning.php"; ?>
+<?php } ?> 
+
 </body>
 </html>

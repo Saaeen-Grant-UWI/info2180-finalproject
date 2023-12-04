@@ -1,18 +1,40 @@
 <?php 
 
 require "core/init.php"; 
-$title = "Add Contact"
+$title = "New Contact";
+$errors = [];
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(!empty($_POST)) {
+
+        foreach (array_keys($_POST) as $key=> $value) {
+            if(empty($_POST[$value])) {
+                $errors[$value] = $value." is required!";
+            }
+        }
+
+        if(empty($errors)) {
+            insert("contacts", [$_POST["title"], $_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["telephone"], $_POST["company"], strtolower($_POST["type"]), users_id_by_name($_POST["assigned_to"]), user_info("id"), date('Y-m-d H:i:s'), date('Y-m-d H:i:s')]);
+            message("Successful added new contact!");
+            redirect("addcontact.php");
+        }
+
+    }   
+}
+
+
 
 ?>
 
 <?php require "includes/header.php"; ?>
 </head>
 <body>
-
+<?php if (is_loggedin()) {?>
     <?php require "includes/banner.php"; ?>
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
+        <?php require "includes/message.php"; ?>
         <h1>New Contact</h1>
         <div class="content-container">
             <form action="" id="add-contact-form" method="post">
@@ -29,13 +51,13 @@ $title = "Add Contact"
                 </div>
 
                 <div class="input-container">
-                    <label for="first_name">First Name</label>
-                    <input type="text" name="first_name">
+                    <label for="firstname">First Name</label>
+                    <input type="text" name="firstname">
                 </div>
 
                 <div class="input-container">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" name="lastname">
                 </div>
 
                 <div class="input-container">
@@ -44,8 +66,8 @@ $title = "Add Contact"
                 </div>
 
                 <div class="input-container">
-                    <label for="phone">Telephone</label>
-                    <input type="text" name="phone">
+                    <label for="telephone">Telephone</label>
+                    <input type="text" name="telephone">
                 </div>
 
                 <div class="input-container">
@@ -62,9 +84,11 @@ $title = "Add Contact"
                 </div>
 
                 <div class="input-container">
-                    <label for="assignment">Assigned To</label>
-                    <select name="assignment" id="assignment-select">
-                        
+                    <label for="assigned_to">Assigned To</label>
+                    <select name="assigned_to" id="assignment-select">
+                        <?php foreach (get_all("users") as $row){?>
+                            <option><?= $row['firstname']." ".$row['lastname'] ?></option>
+                        <?php }?>
                     </select>
                 </div>
 
@@ -76,6 +100,9 @@ $title = "Add Contact"
         </div>
         <?php require "includes/footer.php"; ?>
     </div>
+<?php } else { ?> 
+    <?php require "includes/warning.php"; ?>
+<?php } ?> 
 
 </body>
 </html>

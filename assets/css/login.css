@@ -58,3 +58,17 @@ form button:hover {
 }
 
 form button:hover div { background-image: url(../images/lock-dark.svg); }
+
+.message {
+    padding: 0 24px;
+    background-color: #04f06632;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

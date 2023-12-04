@@ -5,5 +5,7 @@
         unset($_SESSION['user_data']);
         message('Logout was successful!');
         redirect("login.php");
+    } else {
+        redirect("login.php");
     }
 ?>

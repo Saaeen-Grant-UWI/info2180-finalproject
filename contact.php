@@ -1,7 +1,7 @@
 <?php 
 
 require "core/init.php"; 
-$title = "Users"
+$title = "Contact"
 
 ?>
 
@@ -9,7 +9,7 @@ $title = "Users"
 <link rel="stylesheet" href="assets/css/contact.css">
 </head>
 <body>
-
+<?php if (is_loggedin()) { ?>
     <?php require "includes/banner.php"; ?>
     <?php require "includes/sidebar.php"; ?>
 
@@ -100,7 +100,9 @@ $title = "Users"
         <?php require "includes/footer.php"; ?>
 
     </div>
-
+<?php } else { ?> 
+    <?php require "includes/warning.php"; ?>
+<?php } ?> 
 
 </body>
 </html>
