@@ -25,18 +25,22 @@ $title = "Users"
                     <th style="width: 15%;">Role</th>
                     <th>Created</th>
                 </tr>
-                <tr>
-                     <td>Ms.Jan Levinson</td>
-                    <td>jan.levinson@paper.co</td>
-                    <td>Member</td>
-                    <td>2022-11-13 11:00</td>
-                </tr>
-                <tr>
-                     <td>Ms.David Wallace</td>
-                    <td>david.wallace@paper.co</td>
-                    <td>Admin</td>
-                    <td>2022-11-10 19:00</td>
-                </tr>
+                <?php if (is_loggedin()) {?>
+                    <?php if (empty(get_all("users"))) { ?>
+                        <tr>
+                            <td colspan="100%" style="text-align: center;">No users found</td>
+                        </tr>
+                    <?php } else { ?>
+                        <?php foreach (get_all("users") as $row){?>
+                            <tr>
+                                <td><?= $row['firstname'].$row['lastname'] ?></td>
+                                <td><?= $row['email']?></td>
+                                <td><?= ucfirst($row['role'])?></td>
+                                <td><?= $row['created_at']?></td>
+                            </tr>
+                        <?php }?>
+                    <?php }?>
+                <?php }?>
             </table>
         </div>
 

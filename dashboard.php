@@ -46,20 +46,21 @@ $title = "Dashboard";
                     <th>Type</th>
                     <th></th>
                 </tr>
-                <tr>
-                    <td>Mr.Michael Scott</td>
-                    <td>michael.scott@paper.co</td>
-                    <td>The Paper Company</td>
-                    <td><span class="sales_lead" >sales lead</span></td>
-                    <td><a href="#">view</a></td>
-                </tr>
-                <tr>
-                    <td>Mr.Dwight Shrute</td>
-                    <td>dwight.shrute@paper.co</td>
-                    <td>The Paper Company</td>
-                    <td><span class="support" >support</span></td>
-                    <td><a href="#">view</a></td>
-                </tr>
+                <?php if (is_loggedin()) {?>
+                    <?php if (empty(get_all("contacts"))) { ?>
+                        <tr>
+                            <td colspan="100%" style="text-align: center;">No contacts found</td>
+                        </tr>
+                    <?php } else { ?>
+                        <tr>
+                            <td>Mr.Dwight Shrute</td>
+                            <td>dwight.shrute@paper.co</td>
+                            <td>The Paper Company</td>
+                            <td><span class="support" >support</span></td>
+                            <td><a href="#">view</a></td>
+                        </tr>
+                    <?php }?>
+                <?php }?>
             </table>
 
         </div>
