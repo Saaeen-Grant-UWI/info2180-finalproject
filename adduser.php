@@ -1,7 +1,32 @@
 <?php 
 
 require "core/init.php"; 
-$title = "Add User"
+$title = "Add User";
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(!empty($_POST)) {
+
+        $result = get_where("users",["email",$_POST["email"]]);
+        $user = empty($result)? []: $result[0];
+    
+        if($user) { 
+            $password = $user["password"];
+            if($password == $_POST["password"]) {
+                $_SESSION["user_data"] = $user;
+                message("Login was successful!");
+                redirect("dashboard.php");
+                
+            } else {
+                $erros['password'] = "password wrong asl!!";
+            }
+        } else {
+            $erros['email'] = "email not found!!";
+        }
+    } else {
+        $erros['email'] = "enter email";
+    }
+    
+}
 
 ?>
 
