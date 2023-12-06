@@ -72,3 +72,7 @@ form button:hover div { background-image: url(../images/lock-dark.svg); }
     justify-content: space-between;
     align-items: center;
 }
+
+.hide {display: none;}
+
+

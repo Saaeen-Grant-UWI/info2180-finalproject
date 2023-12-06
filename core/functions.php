@@ -5,22 +5,21 @@ function redirect($page) {
     die;
 }
 
-function message($message = '', $kill = false) {
+// function message($message) {
+//     $_SESSION['message'] = $message;
+// }
 
-    if(!(empty($message))) {
-         $_SESSION['message'] = $message;
-    } else {
-         if(!(empty($_SESSION['message']))) {
-             $message = $_SESSION['message'];
-             if($kill) {
-                 unset($_SESSION['message']);
-             }
-             return $message;
-         }
-    }
- 
-    return false;
- }
+
+// function show_message() {
+
+//     if(!(empty($_SESSION['message']))) {
+//         $retval = $_SESSION['message'];
+//         unset($_SESSION['message']);
+//         return  $retval;
+//     }
+
+//     return false;
+//  }
 
 function is_loggedin() {
     if (!(empty($_SESSION['user_data']))){

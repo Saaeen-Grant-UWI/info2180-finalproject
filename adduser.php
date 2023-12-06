@@ -2,25 +2,6 @@
 
 require "core/init.php"; 
 $title = "New User";
-$errors = [];
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(!empty($_POST)) {
-
-        foreach (array_keys($_POST) as $key=> $value) {
-            if(empty($_POST[$value])) {
-                $errors[$value] = $value." is required!";
-            }
-        }
-
-        if(empty($errors)) {
-            insert("users", [$_POST["firstname"], $_POST["lastname"], $_POST["password"], $_POST["email"], strtolower($_POST["role"]), date('Y-m-d H:i:s')]);
-            message("Successful added new user!");
-            redirect("adduser.php");
-        }
-
-    }   
-}
 
 
 ?>
@@ -28,6 +9,55 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php require "includes/header.php"; ?>
 </head>
 <body>
+
+<script>
+    $(document).ready(function(){
+        $("#user-submit").click(function(e){
+            e.preventDefault()
+            // let error_count = 0;
+            // let erros_messages = {}
+            const form_data = $("#add-user-form").serializeArray()
+            $(".user-add-success").addClass("hide")
+
+            // for(item in form_data) {
+            //     if(form_data[item].value == "") {
+            //         error_count++
+                    
+            //         if(form_data[item].name == "firstname") {
+            //             erros_messages[form_data[item].name] = "first name required *"
+            //         } else if(form_data[item].name == "lastname") {
+            //             erros_messages[form_data[item].name] = "first name required *"
+            //         } else {
+            //             erros_messages[form_data[item].name] = form_data[item].name+" is required *"
+            //         }
+
+            //     } else { 
+
+            //         $(`.${form_data[item].name}-error`).addClass("hide") 
+            //         $(`.${form_data[item].name}-error`).removeClass("input-error") 
+            //     }
+            // }
+
+        //    if(error_count == 0) {
+                $.ajax({
+                    type: "POST",
+                    url: "adduser.php",
+                    data: form_data,
+                    success: function(data) {
+                       console.log(data)
+                    },
+                    error: function(data) {}
+                })
+        //    } else {
+        //         for(item in erros_messages) {
+        //             $(`.${item}-error`).removeClass("hide")
+        //             $(`.${item}-error`).addClass("input-error")
+        //             $(`.${item}-error`).html(erros_messages[item])
+        //         }
+        //    }
+        })
+    })
+</script>
 
 <?php if (is_loggedin()) {?>
     <?php require "includes/banner.php"; ?>
@@ -38,26 +68,31 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1>New User</h1>
         <div class="content-container">
             <?php if(is_admin()) {?>
-                <form action="" id="add-user-form" method="post">
+                <div class="user-add-success hide"></div>
+                <form action="adduser.php" id="add-user-form" method="post">
 
                     <div class="input-container">
                         <label for="firstname">First Name</label>
-                        <input type="text" name="firstname">
+                        <input type="text" class="add-user-input" name="firstname">
+                        <p class="firstname-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="lastname">Last Name</label>
-                        <input type="text" name="lastname">
+                        <input type="text" class="add-user-input" name="lastname">
+                        <p class="lastname-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="email">Email</label>
-                        <input type="email" name="email">
+                        <input type="email" class="add-user-input" name="email">
+                        <p class="email-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="password">Password</label>
-                        <input type="text" name="password">
+                        <input type="text" class="add-user-input" name="password">
+                        <p class="password-error hide"></p>
                     </div>
 
                     <div class="input-container">
@@ -69,7 +104,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="input-container">
-                        <button type="submit">Save</button>
+                        <button id="user-submit" type="submit">Save</button>
                     </div>
                     
                 </form>

@@ -2,33 +2,6 @@
 
 require "core/init.php"; 
 $title = "Login";
-$erros = [];
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-    if(!empty($_POST["email"])) {
-
-        $result = get_where("users",["email",$_POST["email"]]);
-        $user = empty($result)? []: $result[0];
-    
-        if($user) { 
-            $password = $user["password"];
-            if($password == $_POST["password"]) {
-                $_SESSION["user_data"] = $user;
-                message("Login was successful!");
-                redirect("dashboard.php");
-                
-            } else {
-                $erros['password'] = "password wrong asl!!";
-            }
-        } else {
-            $erros['email'] = "email not found!!";
-        }
-    } else {
-        $erros['email'] = "enter email";
-    }
-    
-}
 
 ?>
 
@@ -37,17 +10,47 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
 
+<script>
+$(document).ready(function(){
+    $("#user-login").click(function(e){
+        e.preventDefault()
+        const form_data = $("#user-login-form").serializeArray()
+
+        $.ajax({
+            type: "POST",
+            url: "modules/login.module.php",
+            data: form_data,
+            success: function(data) {
+                let error_data = JSON.parse(data)
+                $(".input-error").addClass("hide")
+                for(error in error_data) {
+                    $(`.${error}-error`).html(error_data[error])
+                    $(`.${error}-error`).removeClass("hide")
+                }
+                
+                if(jQuery.isEmptyObject(error_data)) {
+                    window.location.href = "dashboard.php"
+                }
+                
+            },
+            error: function(data) {}
+        })
+        
+    })
+})
+</script>
+
     <?php require "includes/banner.php"; ?>
 
     <div class="login">
         <?php require "includes/message.php"; ?>
         <h1>Login</h1>
-        <form action="" method="post">
+        <form action="modules/login.module.php" id="user-login-form" method="post">
             <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>
-            <?php echo(!array_key_exists("email",$erros)? "": $erros['email'] ); ?>
+            <p class="email-error input-error hide"></p>
             <div class="form-input"><input type="password" name="password" placeholder="Enter password here"></div>
-            <?php echo(!array_key_exists("password",$erros)? "": $erros['password'] ); ?>
-            <button type="submit"><div></div>Login</button>
+            <p class="password-error input-error hide"></p>
+            <button id="user-login" type="submit"><div></div>Login</button>
         </form>
 
         <?php require "includes/footer.php"; ?>
