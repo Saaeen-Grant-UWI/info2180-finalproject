@@ -52,11 +52,11 @@ $title = "Dashboard";
                 <?php } else { ?>
                     <?php foreach (get_all("contacts") as $row){?>
                         <tr>
-                            <td><a href="#"><?= $row['firstname']." ".$row['lastname'] ?></a></td>
+                            <td><a href="contact.php?contact=<?=$row["id"]?>" ><?= $row['title'].".".$row['firstname']." ".$row['lastname'] ?></a></td>
                             <td><?= $row['email']?></td>
                             <td><?= $row['company']?></td>
                             <td><span class="<?=str_replace(" ","-",$row['type'])?>"><?= $row['type']?></span></td>
-                            <td><a href="#">view</a></td>
+                            <td><a href="contact.php?contact=<?=$row["id"]?>" >view</a></td>
                         </tr>
                     <?php }?>
                 <?php }?>
