@@ -43,7 +43,6 @@ $(document).ready(function(){
     <?php require "includes/banner.php"; ?>
 
     <div class="login">
-        <?php require "includes/message.php"; ?>
         <h1>Login</h1>
         <form action="modules/login.module.php" id="user-login-form" method="post">
             <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>

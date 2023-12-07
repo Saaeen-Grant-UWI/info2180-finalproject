@@ -140,17 +140,18 @@ th, td { padding: 12px; }
 th { background-color: #F3F4F6; }
 tr:not(:first-of-type) { color: #5e5f61; }
 
-td:first-of-type {
-    color: #000;
+td:first-of-type, td:first-of-type a {
+    color: black;
     font-weight: bold;
 }
 
-td a { color: #0093b8; }
+td:last-of-type a { color: #0093b8; }
 
 .sales-lead, .support {
     text-transform: uppercase;
     padding: 4px 16px;
     border-radius: 5px;
+    font-size: 14px;
 }
 
 .sales-lead { 
@@ -164,9 +165,15 @@ td a { color: #0093b8; }
 }
 
 .table-warning, .form-warning {
-    font-size: 18px;
     text-transform: capitalize;
+    color: #5e5f61; 
+    font-weight: bold;
+    font-size: 16px;
 }
+
+/* .table-warning {
+    font-weight: normal;
+} */
 
 .table-warning span, .form-warning span { text-decoration: underline; }
 
@@ -275,11 +282,9 @@ input, select { border: 1px solid #d8dadd; }
 .filter-options li a:hover:after { transform: scaleX(1); }
 
 .form-warning {
-    font-size: 18px;
-    font-weight: bold;
     text-align: center;
     background-color: #f3f4f6a3;
-    padding: 12px 0;
+    padding: 18px 0;
 }
 
 /* EXTRA STYLING */
@@ -336,7 +341,7 @@ input, select { border: 1px solid #d8dadd; }
     font-weight: bold;
 }
 
-.user-add-success {
+.user-add-success, .contact-add-success {
     color: #008b3a;
     font-weight: bold;
     padding: 24px 0;
@@ -355,6 +360,6 @@ input, select { border: 1px solid #d8dadd; }
 }
 .hide { display: none; }
 
-.input-container:has(.input-error) input {
+.input-container:has(.input-error):not(:has(.hide)) input{
     border: 1px solid #f00404;
 }

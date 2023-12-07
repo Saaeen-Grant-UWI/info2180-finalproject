@@ -5,22 +5,6 @@ function redirect($page) {
     die;
 }
 
-// function message($message) {
-//     $_SESSION['message'] = $message;
-// }
-
-
-// function show_message() {
-
-//     if(!(empty($_SESSION['message']))) {
-//         $retval = $_SESSION['message'];
-//         unset($_SESSION['message']);
-//         return  $retval;
-//     }
-
-//     return false;
-//  }
-
 function is_loggedin() {
     if (!(empty($_SESSION['user_data']))){
         return true;
@@ -57,14 +41,7 @@ function users_id_by_name($name) {
 }
 
 function users_name_by_id($id, $is_array = false) {
-    $split_name = preg_split("/ /",$name);
     $retval = 0;
-    foreach (get_all("users") as $row){
-        if(($split_name[0]===$row["firstname"])&&($split_name[1]===$row["lastname"])) {
-            $retval = $row["id"];
-        }
-    }
-    
     return $retval;
 }
 

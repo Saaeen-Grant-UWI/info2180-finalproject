@@ -2,41 +2,60 @@
 
 require "core/init.php"; 
 $title = "New Contact";
-$errors = [];
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(!empty($_POST)) {
-
-        foreach (array_keys($_POST) as $key=> $value) {
-            if(empty($_POST[$value])) {
-                $errors[$value] = $value." is required!";
-            }
-        }
-
-        if(empty($errors)) {
-            insert("contacts", [$_POST["title"], $_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["telephone"], $_POST["company"], strtolower($_POST["type"]), users_id_by_name($_POST["assigned_to"]), user_info("id"), date('Y-m-d H:i:s'), date('Y-m-d H:i:s')]);
-            message("Successful added new contact!");
-            redirect("addcontact.php");
-        }
-
-    }   
-}
-
-
 
 ?>
 
 <?php require "includes/header.php"; ?>
 </head>
 <body>
+
+<script>
+    $(document).ready(function(){
+
+        $("#contact-submit").click(function(e){
+            e.preventDefault()
+            const form_data = $("#add-contact-form").serializeArray()
+            $(".contact-add-success").addClass("hide")
+
+            $.ajax({
+                type: "POST",
+                url: "modules/addcontact.module.php",
+                data: form_data,
+                success: function(data) {
+                    let error_data = JSON.parse(data)
+                    $(".input-error").addClass("hide")
+                    for(error in error_data) {
+                        $(`.${error}-error`).html(error_data[error])
+                        $(`.${error}-error`).removeClass("hide")
+                    }
+
+                    if(jQuery.isEmptyObject(error_data)) {
+                        $("#add-contact-form").trigger("reset")
+                        $(".contact-add-success").removeClass("hide")    
+
+                        // setTimeout(function() {
+                        //     $(".contact-add-success").addClass("hide")    
+                        // }, 3500);
+                          
+                    }
+
+                },
+                error: function(data) {}
+            })
+
+        })
+    })
+</script>
+
+
 <?php if (is_loggedin()) {?>
     <?php require "includes/banner.php"; ?>
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
-        <?php require "includes/message.php"; ?>
         <h1>New Contact</h1>
         <div class="content-container">
+            <div class="contact-add-success hide">Sucessfully Added New Contact</div>
             <form action="" id="add-contact-form" method="post">
                 
                 <div class="input-container">
@@ -53,26 +72,31 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="input-container">
                     <label for="firstname">First Name</label>
                     <input type="text" name="firstname">
+                    <p class="firstname-error input-error hide"></p>
                 </div>
 
                 <div class="input-container">
                     <label for="lastname">Last Name</label>
                     <input type="text" name="lastname">
+                    <p class="lastname-error input-error hide"></p>
                 </div>
 
                 <div class="input-container">
                     <label for="email">Email</label>
                     <input type="email" name="email">
+                    <p class="email-error input-error hide"></p>
                 </div>
 
                 <div class="input-container">
                     <label for="telephone">Telephone</label>
                     <input type="text" name="telephone">
+                    <p class="telephone-error input-error hide"></p>
                 </div>
 
                 <div class="input-container">
                     <label for="company">Company</label>
                     <input type="text" name="company">
+                    <p class="company-error input-error hide"></p>
                 </div>
 
                 <div class="input-container">
@@ -93,7 +117,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <div class="input-container">
-                    <button type="submit">Save</button>
+                    <button id="contact-submit" type="submit">Save</button>
                 </div>
 
             </form>

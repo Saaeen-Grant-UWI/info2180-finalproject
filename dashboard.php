@@ -13,7 +13,6 @@ $title = "Dashboard";
     <?php require "includes/sidebar.php"; ?>
 
     <div class="container">
-        <?php require "includes/message.php"; ?>
         <div class="page-title">
             <h1>Dashboard</h1>
             <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
@@ -53,7 +52,7 @@ $title = "Dashboard";
                 <?php } else { ?>
                     <?php foreach (get_all("contacts") as $row){?>
                         <tr>
-                            <td><?= $row['firstname']." ".$row['lastname'] ?></td>
+                            <td><a href="#"><?= $row['firstname']." ".$row['lastname'] ?></a></td>
                             <td><?= $row['email']?></td>
                             <td><?= $row['company']?></td>
                             <td><span class="<?=str_replace(" ","-",$row['type'])?>"><?= $row['type']?></span></td>
