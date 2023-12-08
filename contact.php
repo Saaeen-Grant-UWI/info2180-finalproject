@@ -1,12 +1,15 @@
 <?php 
 require "core/init.php"; 
 require "modules/contact.module.php"; 
+
 $title = "Contact";
+
 
 ?>
 
 <?php require "includes/header.php"; ?>
 <link rel="stylesheet" href="assets/css/contact.css">
+<script src="assets/js/notes.js"></script>
 </head>
 <body>
 <?php if (is_loggedin()) { ?>
@@ -16,14 +19,14 @@ $title = "Contact";
     <div class="container">
         <?php if(empty($errors)) { ?>
             <div class="contact-info-container">
-
+                
                 <div class="page-title">
                     <div class="contact-title">
                         <div class="profile"></div>
                         <div class="title-info">
-                            <h1>Mr.Michael Scott</h1>
-                            <p>Created on November 9, 2022 by David Wallace</p>
-                            <p>Updated on November 13, 2022</p>
+                            <h1><?= $requestedContact["title"].". ".$requestedContact["firstname"]." ".$requestedContact["lastname"]?></h1>
+                            <p>Created on <?= date('F d, Y', strtotime($requestedContact["created_at"])) ?> by <?= users_name_by_id($requestedContact["created_by"])?></p>
+                            <p>Updated on <?= date('F d, Y', strtotime($requestedContact["updated_at"])) ?></p>
                         </div>
                     </div>
                     <div class="title-button-container">
@@ -36,22 +39,22 @@ $title = "Contact";
 
                     <div class="info-container">
                         <p>Email</p>
-                        <p>michael.scott@paper.co</p>
+                        <p><?= $requestedContact["email"]?></p>
                     </div>
 
                     <div class="info-container">
                         <p>Telephone</p>
-                        <p>876-999-9999</p>
+                        <p><?= $requestedContact["telephone"]?></p>
                     </div>
 
                     <div class="info-container">
                         <p>Company</p>
-                        <p>The Paper Company</p>
+                        <p><?= $requestedContact["company"]?></p>
                     </div>
 
                     <div class="info-container">
                         <p>Assigned To</p>
-                        <p>Jen Levinson</p>
+                        <p><?= users_name_by_id($requestedContact["assigned_to"])?></p>
                     </div>
 
                 </div>
@@ -64,31 +67,18 @@ $title = "Contact";
                     </div>
 
                     <div class="notes">
-                        <div class="note">
-                            <p class="title">Jane Doe</p>
-                            <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum cum debitis iusto earum deserunt eligendi sint, eaque, omnis voluptatum esse nam, corrupti aspernatur saepe cupiditate aliquid assumenda. A et repudiandae ad quasi!</p>
-                            <p class="date">November 10, 2022 at 4pm</p>
-                        </div>
+                        
 
-                        <div class="note">
-                            <p class="title">Jane Doe</p>
-                            <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum cum debitis iusto earum deserunt eligendi sint, eaque, omnis voluptatum esse nam, corrupti aspernatur saepe cupiditate aliquid assumenda. A et repudiandae ad quasi!</p>
-                            <p class="date">November 11, 2022 at 10am</p>
-                        </div>
+                        
 
-                        <div class="note">
-                            <p class="title">Jane Doe</p>
-                            <p class="body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum cum debitis iusto earum deserunt eligendi sint, eaque, omnis voluptatum esse nam, corrupti aspernatur saepe cupiditate aliquid assumenda. A et repudiandae ad quasi!</p>
-                            <p class="date">November 12, 2022 at 6pm</p>
-                        </div>
                     </div>
 
                     <div class="add-note">
-                        <p>Add a note about Micheal</p>
-                        <form action="" method="post">
+                        <p>Add a note about <?= $requestedContact["firstname"]?></p>
+                        <form action="" method="post" id="note-form">
                             <textarea name="note" id="note" cols="30" rows="10"></textarea>
                             <div class="add-note-btn">
-                            <button type="submit">Add Note</button>
+                            <button type="submit" id= "note-submit">Add Note</button>
                             </div>
                         </form>
                     </div>

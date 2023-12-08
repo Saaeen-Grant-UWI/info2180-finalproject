@@ -11,6 +11,7 @@ if (!empty($_GET)) {
 
             if (!empty($result)) {
                 $requestedContact = $result[0];
+                $_SESSION["current_contact"] = $requestedContact;
             } else {
                 $errors[0] = "Requested <span>contact</span> not found";
             }

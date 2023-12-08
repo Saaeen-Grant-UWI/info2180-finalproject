@@ -40,8 +40,13 @@ function users_id_by_name($name) {
     return $retval;
 }
 
-function users_name_by_id($id, $is_array = false) {
-    $retval = 0;
+function users_name_by_id($id) {
+    $retval = "";
+    $result = get_where("users", ["id",$id]);
+    if(!empty($result)) {
+        $retval = $result[0]["firstname"]." ".$result[0]["lastname"];
+    }
+
     return $retval;
 }
 
