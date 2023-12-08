@@ -1,11 +1,12 @@
 <?php 
 
 require "core/init.php"; 
+require "modules/filter.module.php";
 $title = "Dashboard";
-
 ?>
 
 <?php require "includes/header.php"; ?>
+<script src="assets/js/filter.js"></script>
 </head>
 <body>
 <?php if (is_loggedin()) { ?>
@@ -27,10 +28,10 @@ $title = "Dashboard";
                 </div>
 
                 <ul class="filter-options">
-                    <li><a href="#">All</a></li>
-                    <li><a href="#">Sales leads</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Assigned to me</a></li>
+                    <li><a href="#" id="filterAll">All</a></li>
+                    <li><a href="#" id="filterSL">Sales leads</a></li>
+                    <li><a href="#" id="filterSupport">Support</a></li>
+                    <li><a href="#" id="filterATM">Assigned to me</a></li>
                 </ul>
 
             </div>
@@ -50,7 +51,7 @@ $title = "Dashboard";
                         </td>
                     </tr>
                 <?php } else { ?>
-                    <?php foreach (get_all("contacts") as $row){?>
+                    <?php foreach ($result as $row){?>
                         <tr>
                             <td><a href="contact.php?contact=<?=$row["id"]?>" ><?= $row['title'].".".$row['firstname']." ".$row['lastname'] ?></a></td>
                             <td><?= $row['email']?></td>
