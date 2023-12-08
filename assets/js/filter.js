@@ -3,13 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let filterSL = document.querySelector("#filterSL");
     let filterS = document.querySelector("#filterSupport");
     let filterATM = document.querySelector("#filterATM");
-    let url = "http://localhost/info2180-finalproject/dashboard.php";
+    let tableData = document.querySelector("#contacts-table");
+    let url = "http://localhost/info2180-finalproject/modules/filter.module.php";
 
     function letsFetch(query) {
         fetch(url + "?filter=" + query)
         .then(response => response.text())
         .then(data => {
-            console.log(data);
+            console.log(data);  
+            tableData.innerHTML = data            
         })
         .catch(error => {
             console.log(error);

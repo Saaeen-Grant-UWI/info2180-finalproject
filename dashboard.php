@@ -1,7 +1,6 @@
 <?php 
 
 require "core/init.php"; 
-require "modules/filter.module.php";
 $title = "Dashboard";
 ?>
 
@@ -36,7 +35,7 @@ $title = "Dashboard";
 
             </div>
 
-            <table>
+            <table id="contacts-table">
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
@@ -51,8 +50,8 @@ $title = "Dashboard";
                         </td>
                     </tr>
                 <?php } else { ?>
-                    <?php foreach ($result as $row){?>
-                        <tr>
+                    <?php foreach (get_all("contacts") as $row){?>
+                        <tr c>
                             <td><a href="contact.php?contact=<?=$row["id"]?>" ><?= $row['title'].".".$row['firstname']." ".$row['lastname'] ?></a></td>
                             <td><?= $row['email']?></td>
                             <td><?= $row['company']?></td>
