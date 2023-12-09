@@ -8,29 +8,6 @@ $title = "Dashboard";
 <script src="assets/js/filter.js"></script>
 </head>
 <body>
-<script>
-    // $(document).ready( function() {
-       
-
-    //     $(".contact-view").click(function (e) {
-    //         e.preventDefault()
-    //         $.ajax({
-    //             type: "GET",
-    //             url: this.href,
-    //             success: function(data) {
-    //                 console.log(data)
-    //                 window.location.href = "contact.php"
-
-    //             },
-    //             error: function(data) {
-    //                 console.log(data)
-
-    //             },
-    //         })
-    //     })
-
-    // })
-</script>
 <?php if (is_loggedin()) { ?>
     <?php require "includes/banner.php"; ?>
     <?php require "includes/sidebar.php"; ?>
@@ -75,10 +52,10 @@ $title = "Dashboard";
                 <?php } else { ?>
                     <?php foreach (get_all("contacts") as $row){?>
                         <tr>
-                            <td><a href="contact.php?contact=<?=$row["id"]?>" class="contact-view" ><?= $row['title'].".".$row['firstname']." ".$row['lastname'] ?></a></td>
+                            <td><a href="contact.php?contact=<?=$row["id"]?>" class="contact-view" ><?= $row['title'].". ".$row['firstname']." ".$row['lastname'] ?></a></td>
                             <td><?= $row['email']?></td>
                             <td><?= $row['company']?></td>
-                            <td><span class="<?=str_replace(" ","-",$row['type'])?>"><?= $row['type']?></span></td>
+                            <td><span class="<?=str_replace(" ","-",strtolower($row['type']))?>"><?= $row['type']?></span></td>
                             <td><a href="contact.php?contact=<?=$row["id"]?>" class="contact-view" >view</a></td>
                         </tr>
                     <?php }?>

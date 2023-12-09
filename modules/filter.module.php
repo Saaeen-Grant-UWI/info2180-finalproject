@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
             <td><a href="contact.php?contact=<?=$row["id"]?>" ><?= $row['title'].".".$row['firstname']." ".$row['lastname'] ?></a></td>
             <td><?= $row['email']?></td>
             <td><?= $row['company']?></td>
-            <td><span class="<?=str_replace(" ","-",$row['type'])?>"><?= $row['type']?></span></td>
+            <td><span class="<?=str_replace(" ","-",strtolower($row['type']))?>"><?= $row['type']?></span></td>
             <td><a href="contact.php?contact=<?=$row["id"]?>" >view</a></td>
         </tr>
     <?php }?>

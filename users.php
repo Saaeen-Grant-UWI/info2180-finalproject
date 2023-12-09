@@ -22,7 +22,7 @@ $title = "Users"
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th style="width: 15%;">Role</th>
+                    <th>Role</th>
                     <th>Created</th>
                 </tr>
                 <?php if (is_admin()) { ?>
@@ -37,8 +37,8 @@ $title = "Users"
                             <tr>
                                 <td><?= $row['firstname']." ".$row['lastname'] ?></td>
                                 <td><?= $row['email']?></td>
-                                <td><?= ucfirst($row['role'])?></td>
-                                <td><?= $row['created_at']?></td>
+                                <td><?= $row['role']?></td>
+                                <td><?= date('Y-m-d h:i', strtotime($row['created_at']))?></td>
                             </tr>
                         <?php }?>
                     <?php }?>

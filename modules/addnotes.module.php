@@ -24,9 +24,6 @@ if(!empty($_SESSION["current_contact"])) {
     
     $where = get_where("notes", ["contact_id", $_SESSION["current_contact"]["id"]]);
 }
-
-
-
 ?>
 
 
@@ -34,6 +31,6 @@ if(!empty($_SESSION["current_contact"])) {
     <div class="note">
         <p class="title"><?= users_name_by_id($row["created_by"])?></p>
         <p class="body"><?= $row["comment"]?></p>
-        <p class="date"><?= date('F d, Y', strtotime($row["created_at"]))?></p>
+        <p class="date"><?= date('F j, Y', strtotime($row["created_at"]))?> at <?= date('ga', strtotime($row["created_at"]))?> </p>
     </div>
 <?php }?>

@@ -21,22 +21,27 @@
     outline:4px solid black;
     border-radius: 100%;
     background-image: url(../images/contact.svg);
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #F3F4F6;
 }
 
 .title-button-container {
     display: flex;
-    gap: 4px;
+    gap: 8px;
 }
 
-.title-button-container a { 
-    border: 1px solid black;
+.title-button-container a:not(.switch-to-support) { 
     color: black; 
 }
 
 .title-button-container a:nth-of-type(1) { background-color: #04f066; }
-.title-button-container a:nth-of-type(2) { background-color: #f0d404; }
+.title-button-container a:nth-of-type(1):hover { background-color: #04ca56; }
+
+.title-button-container a:nth-of-type(2):not(.switch-to-support) { background-color: #f0d404; }
+.title-button-container a:nth-of-type(2):not(.switch-to-support):hover { background-color: #c3ad05; }
+
 
 .contact-personal-info ,.notes-container {
     border: 1px solid #d8dadd;
@@ -98,6 +103,7 @@
     outline: none;
     border: 1px solid #d8dadd;
     border-radius: 5px;
+    padding: 16px;
     max-width: inherit;   
 }
 
@@ -123,6 +129,12 @@
     padding: 12px 18px;
     background-color: #0093b8;
     color: white;
+    cursor: pointer;
+    
+}
+
+.add-note-btn button:hover {
+    background-color: #00718e;
 }
 
 .hide { display: none; }
@@ -148,7 +160,3 @@
 }
 
 .contact-warning span { text-decoration: underline; }
-
-img path {
-    fill: #f00404;
-}

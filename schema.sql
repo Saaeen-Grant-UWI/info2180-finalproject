@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2023 at 05:26 AM
+-- Generation Time: Dec 09, 2023 at 12:10 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -73,6 +73,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `created_at`) VALUES
+(1, 'Admin', 'Profile', '$2y$10$SEOW9iuoCes.7PNkbB5ScuD.zNw2MbTW40gZ5eyWJlsNDonOwUu7u', 'admin@project2.com', 'Admin', '2023-12-01 01:00:30');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -114,7 +121,7 @@ ALTER TABLE `notes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

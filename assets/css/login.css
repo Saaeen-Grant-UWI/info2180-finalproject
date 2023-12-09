@@ -52,11 +52,7 @@ form button div {
    transition: 0.3s;
 }
 
-form button:hover {
-    border: 1px solid #00718e;
-    background-color: #00718e; 
-}
-
+form button:hover { background-color: #00718e; }
 form button:hover div { background-image: url(../images/lock-dark.svg); }
 
 .message {
@@ -73,6 +69,6 @@ form button:hover div { background-image: url(../images/lock-dark.svg); }
     align-items: center;
 }
 
-.hide {display: none;}
+.hide { display: none; }
 
 

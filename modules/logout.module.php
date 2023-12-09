@@ -3,8 +3,12 @@
 
     if(!empty($_SESSION["user_data"])) {
         unset($_SESSION['user_data']);
-        redirect("login.php");
+        if(!empty($_SESSION["current_contact"])) {
+            unset($_SESSION['user_data']);
+        }
+
+        redirect("");
     } else {
-        redirect("login.php");
+        redirect("");
     }
 ?>

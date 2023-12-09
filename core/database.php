@@ -42,7 +42,6 @@ function insert($table, $data){
 }
 
 function update($table, $data){
-    //["assigned_to", user_info("id"), $_SESSION["current_contact"][id]]
     $statement = connect()->prepare("update ".$table." set ".$data[0]." = ? where ".$table.".`id` = ?");
 
     if(!is_array($statement )) {

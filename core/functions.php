@@ -14,7 +14,7 @@ function is_loggedin() {
 
 function is_admin() {
     if(array_key_exists('user_data',$_SESSION)) {
-        if ($_SESSION['user_data']['role'] === "admin"){
+        if ($_SESSION['user_data']['role'] === "Admin"){
             return true;
         }
     }

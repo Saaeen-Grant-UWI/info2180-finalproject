@@ -207,6 +207,10 @@ form {
     color: white;
 }
 
+.input-container button[type="submit"]:hover {
+    background-color: #00718e;
+}
+
 input {
     color: #656668;
     padding: 12px 16px;
