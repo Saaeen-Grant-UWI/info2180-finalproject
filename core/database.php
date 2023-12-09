@@ -41,4 +41,11 @@ function insert($table, $data){
     
 }
 
+function update(){
+    $statement = connect()->query("UPDATE `contacts` SET `assigned_to` = '2' WHERE `contacts`.`id` = 1;");
+    if(!is_array($statement )) {
+        $statement->execute();
+    }
+}
+
 ?>

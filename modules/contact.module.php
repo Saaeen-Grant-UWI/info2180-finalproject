@@ -16,6 +16,31 @@ if(!empty($_SESSION["current_contact"])) {
 ?>
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    let assignTM = document.querySelector("#assignTM")
+    let switchTo = document.querySelector("#switch")
+    let url = "http://localhost/info2180-finalproject/assign_switch.module.php?something=0"
+
+    function letsFetch(url) {
+        fetch(url)
+        .then(Response => Response.text())
+        .then(data => {
+            console.log("test")
+        })
+        .catch(error => {
+            console.log("Error")
+        })
+    }
+
+    assignTM.addEventListener("click", (e) => {
+        e.preventDefault()
+        console.log("test")
+        letsFetch(url)
+    })
+})
+</script>
+
+<script>
 $("#note-submit").click(function(e) {
 e.preventDefault()
     const formdata = $("#note-form").serializeArray()
@@ -57,8 +82,8 @@ e.preventDefault()
             </div>
         </div>
         <div class="title-button-container">
-            <a href="addcontact.php"><span><img src="assets/images/assign.svg"  width="32px" alt=""></span>Assign to me</a>
-            <a href="addcontact.php"><span><img src="assets/images/switch.svg"  width="32px" alt=""></span>Switch to Sales Lead</a>
+            <a href="#" id="assignTM"><span><img src="assets/images/assign.svg"  width="32px" alt=""></span>Assign to me</a>
+            <a href="#" id="switch"><span><img src="assets/images/switch.svg"  width="32px" alt=""></span>Switch to Sales Lead</a>
         </div>
     </div>
 
