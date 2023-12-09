@@ -6,29 +6,23 @@ $where = [];
 $errors = [];
 
 if(!empty($_SESSION["current_contact"])) {
-            
-    $where = get_where("notes", ["contact_id", $_SESSION["current_contact"]["id"]]);
-            
-}
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     
-    
-    if(!empty($_POST["note"])) {
-        if(!empty($_SESSION["current_contact"])) {
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        
+        
+        if(!empty($_POST["note"])) {
             insert("notes", [$_SESSION["current_contact"]["id"], $_POST["note"], user_info("id"), date('Y-m-d H:i:s')]);
-            $where = get_where("notes", ["contact_id", $_SESSION["current_contact"]["id"]]);
+                        
+        } else {
             
-        } 
-        
-        
-    } else {
-        
-        $errors['note'] = "please enter a note!";
-        
-    }
+            $errors['note'] = "please enter a note!";
+            
+        }
 
+    }    
+    
+    $where = get_where("notes", ["contact_id", $_SESSION["current_contact"]["id"]]);
 }
 
 

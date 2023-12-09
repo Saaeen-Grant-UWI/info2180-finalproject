@@ -32,10 +32,6 @@ $title = "New Contact";
                     if(jQuery.isEmptyObject(error_data)) {
                         $("#add-contact-form").trigger("reset")
                         $(".contact-add-success").removeClass("hide")    
-
-                        // setTimeout(function() {
-                        //     $(".contact-add-success").addClass("hide")    
-                        // }, 3500);
                           
                     }
 

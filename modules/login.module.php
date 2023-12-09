@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         if($user) { 
             $password = $user["password"];
-            if($password == $_POST["password"]) {
+            if(password_verify($_POST['password'], $password)) {
                 $_SESSION["user_data"] = $user;
                 
             } else {
