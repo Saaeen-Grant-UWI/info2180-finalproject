@@ -148,3 +148,7 @@
 }
 
 .contact-warning span { text-decoration: underline; }
+
+img path {
+    fill: #f00404;
+}

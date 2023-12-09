@@ -10,35 +10,10 @@ $title = "Contact";
 if(!empty($_SESSION["current_contact"])) {
     
     $requestedContact = $_SESSION["current_contact"];
-    $notes = get_where("notes", ["contact_id", $_SESSION["current_contact"]["id"]]);
+    
 }
 
 ?>
-
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-    let assignTM = document.querySelector("#assignTM")
-    let switchTo = document.querySelector("#switch")
-    let url = "http://localhost/info2180-finalproject/assign_switch.module.php?something=0"
-
-    function letsFetch(url) {
-        fetch(url)
-        .then(Response => Response.text())
-        .then(data => {
-            console.log("test")
-        })
-        .catch(error => {
-            console.log("Error")
-        })
-    }
-
-    assignTM.addEventListener("click", (e) => {
-        e.preventDefault()
-        console.log("test")
-        letsFetch(url)
-    })
-})
-</script>
 
 <script>
 $("#note-submit").click(function(e) {
@@ -66,7 +41,61 @@ e.preventDefault()
         }
 
     })
+    
 })
+
+$("#assignTM").click(function(e) {
+    e.preventDefault()
+    $.ajax({
+        type: "GET",
+        url: "modules/assign_switch.module.php?action=0",
+        success: function (data) {
+            $("#assigned-user").html(data)
+            console.log(data)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+
+    })
+})
+
+// $("#switch").click(function(e) {
+//     e.preventDefault()
+
+
+//     $.ajax({
+//         type: "GET",
+//         url: "modules/assign_switch.module.php?action="+$("#switch").attr('class'),
+//         success: function (data) {
+//             // $("#assigned-user").html(data)
+//             $("#switch").replaceWith(data)
+//         },
+//         error: function (data) {
+//             console.log(data)
+//         }
+
+//     })
+// })
+
+$(document).on('click', '#switch', function(e){
+    e.preventDefault()
+
+
+    $.ajax({
+        type: "GET",
+        url: "modules/assign_switch.module.php?action="+$("#switch").attr('class'),
+        success: function (data) {
+            // $("#assigned-user").html(data)
+            $("#switch").replaceWith(data)
+        },
+        error: function (data) {
+            console.log(data)
+        }
+
+    })
+})
+
 </script>
 
 
@@ -83,7 +112,7 @@ e.preventDefault()
         </div>
         <div class="title-button-container">
             <a href="#" id="assignTM"><span><img src="assets/images/assign.svg"  width="32px" alt=""></span>Assign to me</a>
-            <a href="#" id="switch"><span><img src="assets/images/switch.svg"  width="32px" alt=""></span>Switch to Sales Lead</a>
+            <a href="#" id="switch" class="<?=$requestedContact["type"]=="sales lead"? "1":"2" ?>" ><span><img src="assets/images/switch.svg"  width="32px" alt=""></span>Switch to <?=$requestedContact["type"]!="sales lead"? ucwords("sales lead"):ucwords("support") ?></a>
         </div>
     </div>
 
@@ -106,7 +135,7 @@ e.preventDefault()
 
         <div class="info-container">
             <p>Assigned To</p>
-            <p><?= users_name_by_id($requestedContact["assigned_to"])?></p>
+            <p id="assigned-user"><?= users_name_by_id($requestedContact["assigned_to"])?></p>
         </div>
 
     </div>

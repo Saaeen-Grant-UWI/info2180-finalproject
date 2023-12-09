@@ -40,7 +40,7 @@ if (!empty($_GET)) {
         
     <?php if(!empty($errors)) { ?>
         <div class="contact-warning-container">
-                    <p class="contact-warning"><?=$errors[0]?></p>
+            <p class="contact-warning"><?=$errors[0]?></p>
         </div>
     <?php } ?> 
     </div>

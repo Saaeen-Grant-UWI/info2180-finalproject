@@ -6,7 +6,6 @@ $(document).ready(function() {
         url: "modules/contact.module.php",
         success: function(data) {
             $(".container").html(data)
-            console.log(data)
         },
         error: function(data) {
             console.log(data)
