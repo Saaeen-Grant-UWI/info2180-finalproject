@@ -42,7 +42,7 @@ $title = "New User";
 
                     <div class="input-container">
                         <label for="password">Password</label>
-                        <input type="text" class="add-user-input" name="password">
+                        <input type="text" class="add-user-input" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
                         <p class="password-error input-error hide"></p>
                     </div>
 
