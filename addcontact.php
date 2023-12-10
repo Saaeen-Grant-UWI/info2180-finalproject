@@ -51,7 +51,7 @@ $title = "New Contact";
 
                 <div class="input-container">
                     <label for="telephone">Telephone</label>
-                    <input type="text" name="telephone">
+                    <input type="text" name="telephone" required pattern = "/^\d{3}-\d{3}-\d{4}$/">
                     <p class="telephone-error input-error hide"></p>
                 </div>
 
