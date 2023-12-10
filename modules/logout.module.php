@@ -7,6 +7,7 @@
             unset($_SESSION['user_data']);
         }
 
+        session_destroy();
         redirect("");
     } else {
         redirect("");

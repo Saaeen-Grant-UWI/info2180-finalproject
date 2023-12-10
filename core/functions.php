@@ -23,9 +23,24 @@ function is_admin() {
 
 function user_info($info) {
     if(array_key_exists('user_data',$_SESSION)) {
+       if($info=="all") {
+            return $_SESSION['user_data'];
+       } else {
         return $_SESSION['user_data'][$info];
+       }
     }
     return false;
+}
+
+function current_contact_info($info) {
+    if(array_key_exists('current_contact',$_SESSION)) {
+        if($info=="all") {
+             return $_SESSION['current_contact'];
+        } else {
+         return $_SESSION['current_contact'][$info];
+        }
+     }
+     return false;
 }
 
 function users_id_by_name($name) {
@@ -45,6 +60,28 @@ function users_name_by_id($id) {
     $result = get_where("users", ["id",$id]);
     if(!empty($result)) {
         $retval = $result[0]["firstname"]." ".$result[0]["lastname"];
+    }
+
+    return $retval;
+}
+
+function sanitize($data) {   
+    return htmlspecialchars($data);
+}
+
+function sanitize_array($array_data) {
+    foreach ($array_data as $key => $value) {
+        $array_data[$key] = sanitize($value);
+    }
+    
+    return $array_data;
+}
+
+function sanitize_array_of($array_data) {
+    $retval = [];
+    foreach ($array_data as $row) {
+        
+        array_push($retval, sanitize_array($row));
     }
 
     return $retval;

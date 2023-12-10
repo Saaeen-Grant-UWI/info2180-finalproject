@@ -6,20 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let tableData = document.querySelector("#contacts-table");
     let url = "http://localhost/info2180-finalproject/modules/filter.module.php";
 
-    function letsFetch(query) {
-        fetch(url + "?filter=" + query)
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);  
-            tableData.innerHTML = data            
-        })
-        .catch(error => {
-            console.log(error);
-        })
-    }
-    
+   
+    letsFetch("all")
 
-    
     filterAll.addEventListener("click", () => {
         letsFetch("all")
     })
@@ -35,4 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
     filterATM.addEventListener("click", () => {
         letsFetch("atm")
     })
+
+    function letsFetch(query) {
+        fetch(url + "?filter=" + query)
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);  
+            tableData.innerHTML = data            
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+    
 })

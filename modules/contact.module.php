@@ -8,8 +8,7 @@ if (!empty($_GET)) {
             $result = get_where("contacts", ["id", $contactId]);
 
             if (!empty($result)) {
-                $requestedContact = $result[0];
-                $_SESSION["current_contact"] = $requestedContact;
+                $_SESSION["current_contact"] = $result[0];
             } else {
                 $errors[0] = "Requested <span>contact</span> not found";
             }

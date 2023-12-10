@@ -2,6 +2,7 @@
 require "core/init.php"; 
 require "modules/contact.module.php";
 $title = "Contact";
+$requestedContact = sanitize_array(current_contact_info("all"));
 
 ?>
 
@@ -25,19 +26,20 @@ $title = "Contact";
                         <div class="title-info">
                             <h1><?= $requestedContact["title"].". ".$requestedContact["firstname"]." ".$requestedContact["lastname"]?></h1>
                             <p>Created on <?= date('F j, Y', strtotime($requestedContact["created_at"])) ?> by <?= users_name_by_id($requestedContact["created_by"])?></p>
-                            <p>Updated on <?= date('F j, Y', strtotime($requestedContact["updated_at"])) ?></p>
+                            <p id="updated-at">Updated on <?= date('F j, Y', strtotime($requestedContact["updated_at"])) ?></p>
                         </div>
                     </div>
                     <div class="title-button-container">
+                        <p class="assign-warning hide" >Contact Already<br>Assigned To You!</p>
                         <a href="#" id="assignTM"><span><img src="assets/images/assign.svg"  width="32px" alt=""></span>Assign to me</a>
                         <?php if($requestedContact["type"]=="Sales Lead") { ?>
                             <a href="#" id="switch" class="switch-to-support" >
-                                <span><img src="assets/images/switch-light.svg"  width="32px" alt=""></span>
+                                <span><img src="assets/images/switch-light.svg"  width="32px" alt="switch to support"></span>
                                 Switch to Support
                             </a>
                         <?php } else { ?>
                             <a href="#" id="switch" class="switch-to-sales" >
-                                <span><img src="assets/images/switch.svg"  width="32px" alt=""></span>
+                                <span><img src="assets/images/switch.svg"  width="32px" alt="switch to sales lead"></span>
                                 Switch to Sales Lead
                             </a>
                         <?php } ?>
@@ -63,7 +65,7 @@ $title = "Contact";
 
                     <div class="info-container">
                         <p>Assigned To</p>
-                        <p id="assigned-user"><?= users_name_by_id($requestedContact["assigned_to"])?></p>
+                        <p id="assigned-user"><?= sanitize(users_name_by_id($requestedContact["assigned_to"]))?></p>
                     </div>
 
                 </div>

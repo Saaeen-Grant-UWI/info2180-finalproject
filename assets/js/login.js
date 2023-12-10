@@ -10,9 +10,14 @@ $(document).ready(function(){
             success: function(data) {
                 let error_data = JSON.parse(data)
                 $(".input-error").addClass("hide")
+                $("#email").removeClass("input-warning")
+                $("#password").removeClass("input-warning")
+
                 for(error in error_data) {
                     $(`.${error}-error`).html(error_data[error])
                     $(`.${error}-error`).removeClass("hide")
+                    $(`#${error}`).addClass("input-warning")
+                    
                 }
                 
                 if(jQuery.isEmptyObject(error_data)) {

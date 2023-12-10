@@ -29,6 +29,7 @@
 
 .title-button-container {
     display: flex;
+    align-items: center;
     gap: 8px;
 }
 
@@ -119,10 +120,15 @@
 
 }
 
-.add-note-btn p {
+.add-note-btn p, .assign-warning {
     padding-bottom: 0;
     font-weight: normal;
     color: #f00404;
+}
+
+.assign-warning {
+    text-align: center;
+    padding-right: 8px;
 }
 
 .add-note-btn button {

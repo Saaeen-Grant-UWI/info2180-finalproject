@@ -5,8 +5,6 @@ require "../core/init.php";
 $errors = [];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-
     
     if(!empty($_POST["email"])) {
 

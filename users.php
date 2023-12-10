@@ -15,7 +15,7 @@ $title = "Users"
     <div class="container">
         <div class="page-title">
             <h1>Users</h1> 
-            <a href="adduser.php"><span><img src="assets/images/add.svg" width="32px" alt=""></span>Add User</a>
+            <a href="adduser.php"><span><img src="assets/images/add.svg" width="32px" alt="add user"></span>Add User</a>
         </div>
         <div class="content-container">
              <table>
@@ -33,7 +33,7 @@ $title = "Users"
                             </td>
                         </tr>
                     <?php } else { ?>
-                        <?php foreach (get_all("users") as $row){?>
+                        <?php foreach (sanitize_array_of(get_all("users")) as $row){?>
                             <tr>
                                 <td><?= $row['firstname']." ".$row['lastname'] ?></td>
                                 <td><?= $row['email']?></td>

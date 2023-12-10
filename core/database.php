@@ -5,13 +5,11 @@ function connect() {
     return $pdo;
 }
     
-
 function get_all($table) {
-    $statement = connect()->query("select * from ".$table);
+    $statement = connect()->prepare("select * from ".$table);
+    $statement->execute();
     return $statement->fetchAll(PDO::FETCH_ASSOC);
 }
-
-// INSERT INTO `users` (`id`, `firstname`, `lastname`, `password`, `email`, `role`, `created_at`) VALUES (NULL, 'John', 'Doe', 'password', 'johndoe@example.com', 'admin', '2023-12-03 04:16:54.000000');
 
 function get_where($table, $data) {
     $statement = connect()->prepare("select * from ".$table." where ".$data[0]." = ?");

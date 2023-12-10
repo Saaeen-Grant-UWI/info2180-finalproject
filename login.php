@@ -16,9 +16,13 @@ $title = "Login";
     <div class="login">
         <h1>Login</h1>
         <form action="modules/login.module.php" id="user-login-form" method="post">
-            <div class="form-input"><input type="email" name="email" placeholder="Enter email here" ></div>
+            <div class="form-input">
+                <input type="email" id="email" name="email" placeholder="Enter email here" autocomplete="on" required>
+            </div>
             <p class="email-error input-error hide"></p>
-            <div class="form-input"><input type="password" name="password" placeholder="Enter password here"></div>
+            <div class="form-input">
+                <input type="password" id="password" name="password" placeholder="Enter password here" required>
+            </div>
             <p class="password-error input-error hide"></p>
             <button id="user-login" type="submit"><div></div>Login</button>
         </form>

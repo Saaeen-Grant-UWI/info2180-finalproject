@@ -33,7 +33,7 @@ CREATE TABLE `contacts` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `telephone` varchar(10) NOT NULL,
+  `telephone` varchar(12) NOT NULL,
   `company` varchar(255) NOT NULL,
   `type` varchar(100) NOT NULL,
   `assigned_to` int(11) NOT NULL,

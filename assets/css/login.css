@@ -70,5 +70,6 @@ form button:hover div { background-image: url(../images/lock-dark.svg); }
 }
 
 .hide { display: none; }
+.input-warning { border: 1px solid #f00404; }
 
 

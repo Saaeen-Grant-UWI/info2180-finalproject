@@ -24,31 +24,31 @@ $title = "New User";
 
                     <div class="input-container">
                         <label for="firstname">First Name</label>
-                        <input type="text" class="add-user-input" name="firstname">
+                        <input type="text" class="add-user-input" id="firstname" name="firstname" autocomplete="off" required>
                         <p class="firstname-error input-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="lastname">Last Name</label>
-                        <input type="text" class="add-user-input" name="lastname">
+                        <input type="text" class="add-user-input" id="lastname" name="lastname" autocomplete="off" required>
                         <p class="lastname-error input-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="email">Email</label>
-                        <input type="email" class="add-user-input" name="email">
+                        <input type="email" class="add-user-input" id="email" name="email" autocomplete="off" required>
                         <p class="email-error input-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="password">Password</label>
-                        <input type="text" class="add-user-input" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+                        <input type="text" class="add-user-input" id="password" name="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$" autocomplete="off">
                         <p class="password-error input-error hide"></p>
                     </div>
 
                     <div class="input-container">
                         <label for="role">Roles</label>
-                        <select name="role" id="role-select">
+                        <select name="role" id="role">
                             <option name="member">Member</option>
                             <option name="admin">Admin</option>
                         </select>

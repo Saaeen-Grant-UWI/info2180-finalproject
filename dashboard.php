@@ -15,14 +15,14 @@ $title = "Dashboard";
     <div class="container">
         <div class="page-title">
             <h1>Dashboard</h1>
-            <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt=""></span>Add Contact</a>
+            <a href="addcontact.php"><span><img src="assets/images/add.svg"  width="32px" alt="add contact"></span>Add Contact</a>
         </div>
         <div class="content-container">
 
             <div class="filter-container">
 
                 <div class="filter-text">
-                    <img src="assets/images/filter.svg" alt="" width="32px" srcset="">
+                    <img src="assets/images/filter.svg" alt="filter" width="32px" srcset="">
                     <p>Filter By:</p>
                 </div>
 
@@ -36,30 +36,7 @@ $title = "Dashboard";
             </div>
 
             <table id="contacts-table">
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Company</th>
-                    <th>Type</th>
-                    <th></th>
-                </tr>
-                <?php if (empty(get_all("contacts"))) { ?>
-                    <tr>
-                        <td colspan="100%" style="text-align: center;">
-                            <p class="table-warning" >No contacts found</p>
-                        </td>
-                    </tr>
-                <?php } else { ?>
-                    <?php foreach (get_all("contacts") as $row){?>
-                        <tr>
-                            <td><a href="contact.php?contact=<?=$row["id"]?>" class="contact-view" ><?= $row['title'].". ".$row['firstname']." ".$row['lastname'] ?></a></td>
-                            <td><?= $row['email']?></td>
-                            <td><?= $row['company']?></td>
-                            <td><span class="<?=str_replace(" ","-",strtolower($row['type']))?>"><?= $row['type']?></span></td>
-                            <td><a href="contact.php?contact=<?=$row["id"]?>" class="contact-view" >view</a></td>
-                        </tr>
-                    <?php }?>
-                <?php }?>
+
             </table>
 
         </div>
