@@ -8,6 +8,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if(!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
             $errors["email"] = "Valid email is required!";
+        } elseif(get_where("contacts",["email",$_POST["email"]])) {
+            $errors["email"] = "Email Already in Use!";
         }
 
         foreach ($_POST as $key=> $value) {
