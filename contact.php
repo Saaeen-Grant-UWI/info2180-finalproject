@@ -2,7 +2,6 @@
 require "core/init.php"; 
 require "modules/contact.module.php";
 $title = "Contact";
-$requestedContact = sanitize_array(current_contact_info("all"));
 
 ?>
 

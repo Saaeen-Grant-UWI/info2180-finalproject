@@ -1,5 +1,6 @@
 <?php
 $errors = [];
+$requestedContact = [];
 
 if (!empty($_GET)) {
     if (!(count($_GET) > 1)) {
@@ -9,6 +10,7 @@ if (!empty($_GET)) {
 
             if (!empty($result)) {
                 $_SESSION["current_contact"] = $result[0];
+                $requestedContact = sanitize_array(current_contact_info("all"));
             } else {
                 $errors[0] = "Requested <span>contact</span> not found";
             }
@@ -21,6 +23,7 @@ if (!empty($_GET)) {
 } else {
     $errors[0] = "No <span>contact</span> request found";
 }
+
 ?>
 
 
